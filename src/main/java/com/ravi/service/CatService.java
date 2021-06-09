@@ -1,15 +1,14 @@
 package com.ravi.service;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import com.ravi.CatResponse;
-import com.ravi.Constants;
 import com.ravi.repository.CatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 //defining the business logic
 @Service
@@ -24,12 +23,11 @@ com.ravi.repository.UserRepository userRepository;
 @org.springframework.beans.factory.annotation.Value("${catURL}")
 private  String catURL;
 
-//getting all student records
 public List<com.ravi.model.User> getAllStudent()
 {
-List<com.ravi.model.User> students = new ArrayList<com.ravi.model.User>();
-userRepository.findAll().forEach(student -> students.add(student));
-return students;
+List<com.ravi.model.User> users = new ArrayList<com.ravi.model.User>();
+userRepository.findAll().forEach(student -> users.add(student));
+return users;
 }
 //getting a specific record
 public com.ravi.model.User getStudentById(int id)
@@ -43,11 +41,6 @@ public void saveOrUpdate(com.ravi.model.User student)
         throw new RuntimeException("user already exist");
     }
     userRepository.save(student);
-}
-//deleting a specific record
-public void delete(int id)
-{
-userRepository.deleteById(id);
 }
 
     public String saveUserCat(int id) {
